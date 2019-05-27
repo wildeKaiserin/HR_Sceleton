@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,8 +25,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        // these will return the actual dpi horizontally and vertically
+        float xDpi = dm.xdpi;
+        float yDpi = dm.ydpi;
+        //diagonal dpi
+        float cDpi = (float)Math.sqrt(xDpi*xDpi+yDpi*yDpi);
+
         //NATIVE CALL
-        setResolution(420.0f);
+        setResolution(cDpi);
 
         //NATIVE CALL
         //file is dummy data, is ignored in the backend
