@@ -25,17 +25,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // calculate density / dpi
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        // these will return the actual dpi horizontally and vertically
-        float xDpi = dm.xdpi;
-        float yDpi = dm.ydpi;
-        //diagonal dpi
-        float cDpi = (float)Math.sqrt(xDpi*xDpi+yDpi*yDpi);
+        float density = (float)dm.densityDpi;
 
         //NATIVE CALL
-        setResolution(cDpi);
+        setResolution(density);
 
         //NATIVE CALL
         //file is dummy data, is ignored in the backend
